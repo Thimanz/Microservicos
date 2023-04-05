@@ -10,7 +10,7 @@
         },
         {
             "name": "MSS_LEMBRETES_HOST",
-            "value": "lovalhost"
+            "value": "localhost"
         }
     ]
 }
