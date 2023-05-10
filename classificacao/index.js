@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 app.use(express.json());
+const axios = require("axios");
 const { MSS_CLASSIFICACAO_PORTA } = process.env;
 
 const palavraChave = "importante";
@@ -19,8 +20,8 @@ const funcoes = {
 app.post("/eventos", (req, res) => {
     try {
         funcoes[req.body.tipo](req.body.dados);
-        res.status(200).send({ msg: "ok" });
     } catch (e) {}
+    res.status(200).send({ msg: "ok" });
 });
 
 app.listen(MSS_CLASSIFICACAO_PORTA, () =>

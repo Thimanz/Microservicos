@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "20231_ipi_paoo_mss",
-    "dateExported": "2023-04-26T20:41:09.818Z",
+    "dateExported": "2023-05-10T19:13:42.438Z",
     "version": "1.1",
     "folders": [
         {
@@ -32,11 +32,11 @@
             "colId": "efb7920c-4b84-4632-ba02-5c75f89b25b0",
             "containerId": "3d7b9378-2a76-4169-a353-574ef5a11102",
             "name": "obter lembretes",
-            "url": "localhost:4000/lembretes",
+            "url": "{{MSS_HOST}}:{{MSS_LEMBRETES_PORTA}}/lembretes",
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-03-29T20:20:06.694Z",
-            "modified": "2023-03-29T20:20:06.694Z",
+            "modified": "2023-05-10T19:13:30.184Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -79,11 +79,11 @@
             "colId": "efb7920c-4b84-4632-ba02-5c75f89b25b0",
             "containerId": "cf861090-9e6f-4675-ab25-bfcbf4ece76c",
             "name": "salvar observacao",
-            "url": "{{MSS_HOST}}:{{MSS_OBSERVACOES_PORTA}}/lembretes/2/observacoes",
+            "url": "{{MSS_HOST}}:{{MSS_OBSERVACOES_PORTA}}/lembretes/1/observacoes",
             "method": "POST",
             "sortNum": 40000,
             "created": "2023-04-05T20:25:02.938Z",
-            "modified": "2023-04-26T20:28:21.844Z",
+            "modified": "2023-05-10T19:12:30.231Z",
             "headers": [],
             "params": [],
             "body": {
