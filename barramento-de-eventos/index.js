@@ -13,6 +13,8 @@ app.post("/eventos", (req, res) => {
 
     axios.post("http://localhost:6000/eventos", evento);
 
+    axios.post('http://localhost:7000/eventos', evento)
+
     res.status(200).send({ msg: "ok" });
 });
 
