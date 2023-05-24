@@ -20,6 +20,9 @@ const funcoes = {
         const i = observacoes.findIndex((o) => o.id === observacao.id);
         observacoes[i] = observacao;
     },
+    LembreteAtualizado: (lembrete) => {
+        baseConsulta[lembrete.id] = lembrete;
+    },
 };
 
 //GET /lembretes

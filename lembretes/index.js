@@ -8,6 +8,20 @@ app.use(express.json());
 const lembretes = {};
 let idAtual = 0;
 
+const funcoes = {
+    LembreteAnalisado: (lembrete) => {
+        lembretes[lembrete.id] = lembrete;
+        axios.post("http://localhost:10000/eventos", {
+            tipo: "LembreteAtualizado",
+            dados: {
+                id: lembrete.id,
+                texto: lembrete.texto,
+                sentimento: lembrete.sentimento,
+            },
+        });
+    },
+};
+
 //GET localhost:400/lembretes
 app.get("/lembretes", (req, res) => {
     res.send(lembretes);
@@ -20,15 +34,19 @@ app.post("/lembretes", async (req, res) => {
     lembretes[idAtual] = {
         id: idAtual,
         texto,
+        sentimento: "aguardando",
     };
     await axios.post("http://localhost:10000/eventos", {
         tipo: "LembreteCriado",
-        dados: { id: idAtual, texto },
+        dados: { id: idAtual, texto, sentimento: "aguardando" },
     });
     res.status(201).send(lembretes[idAtual]);
 });
 
 app.post("/eventos", (req, res) => {
+    try {
+        funcoes[req.body.tipo](req.body.dados);
+    } catch (e) {}
     res.status(200).send({ msg: "ok" });
 });
 
