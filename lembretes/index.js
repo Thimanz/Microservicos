@@ -9,13 +9,26 @@ const lembretes = {};
 let idAtual = 0;
 
 const funcoes = {
-    LembreteAnalisado: (lembrete) => {
-        lembretes[lembrete.id] = lembrete;
+    LembreteClassificado: (lembrete) => {
+        lembretes[lembrete.id].status = lembrete.status;
         axios.post("http://localhost:10000/eventos", {
             tipo: "LembreteAtualizado",
             dados: {
                 id: lembrete.id,
                 texto: lembrete.texto,
+                status: lembrete.status,
+                sentimento: lembrete.sentimento,
+            },
+        });
+    },
+    LembreteAnalisado: (lembrete) => {
+        lembretes[lembrete.id].sentimento = lembrete.sentimento;
+        axios.post("http://localhost:10000/eventos", {
+            tipo: "LembreteAtualizado",
+            dados: {
+                id: lembrete.id,
+                texto: lembrete.texto,
+                status: lembrete.status,
                 sentimento: lembrete.sentimento,
             },
         });
@@ -34,11 +47,17 @@ app.post("/lembretes", async (req, res) => {
     lembretes[idAtual] = {
         id: idAtual,
         texto,
+        status: "aguardando",
         sentimento: "aguardando",
     };
     await axios.post("http://localhost:10000/eventos", {
         tipo: "LembreteCriado",
-        dados: { id: idAtual, texto, sentimento: "aguardando" },
+        dados: {
+            id: idAtual,
+            texto,
+            status: "aguardando",
+            sentimento: "aguardando",
+        },
     });
     res.status(201).send(lembretes[idAtual]);
 });

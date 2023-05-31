@@ -16,6 +16,15 @@ const funcoes = {
             dados: observacao,
         });
     },
+    LembreteCriado: (lembrete) => {
+        lembrete.status = lembrete.texto.includes(palavraChave)
+            ? "importante"
+            : "comum";
+        axios.post("http://localhost:10000/eventos", {
+            tipo: "LembreteClassificado",
+            dados: lembrete,
+        });
+    },
 };
 app.post("/eventos", (req, res) => {
     try {
