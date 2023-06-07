@@ -26,6 +26,23 @@ const funcoes = {
             },
         });
     },
+    ObservacaoAnalisada: (observacao) => {
+        const observacoes = observacoesPorLembreteId[observacao.lembreteId];
+        const obsParaAtualizar = observacoes.find(
+            (o) => o.id === observacao.id
+        );
+        obsParaAtualizar.sentimento = observacao.sentimento;
+        axios.post("http://localhost:10000/eventos", {
+            tipo: "ObservacaoAtualizada",
+            dados: {
+                id: observacao.id,
+                texto: observacao.texto,
+                lembreteId: observacao.lembreteId,
+                status: observacao.status,
+                sentimento: observacao.sentimento,
+            },
+        });
+    },
 };
 
 app.get("/lembretes/:id/observacoes", (req, res) => {
